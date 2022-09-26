@@ -1,0 +1,31 @@
+<div>
+  <table
+    mat-table
+    [dataSource]="movies"
+    cdkDropList
+    [cdkDropListData]="movies"
+    (cdkDropListDropped)="drop($event)"
+  >
+    <ng-container matColumnDef="movie">
+      <th mat-header-cell *matHeaderCellDef>movie</th>
+      <td mat-cell *matCellDef="let movie">{{movie}}</td>
+    </ng-container>
+    <tr mat-header-row *matHeaderRowDef="columns"></tr>
+    <tr
+      cdkDragLockAxis="y"
+      cdkDrag
+      [cdkDragData]="item"
+      mat-row
+      *matRowDef="let item; columns: columns;"
+      (click)="editItem(item)"
+    ></tr>
+  </table>
+</div>
+
+<!-- <div cdkDropList class="example-list" (cdkDropListDropped)="drop($event)">
+  <div class="example-box" *ngFor="let movie of movies" cdkDrag>{{movie}}</div>
+</div> -->
+
+<!-- Copyright 2019 Google LLC. All Rights Reserved.
+    Use of this source code is governed by an MIT-style license that
+    can be found in the LICENSE file at http://angular.io/license -->
